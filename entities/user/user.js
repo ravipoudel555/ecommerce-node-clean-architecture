@@ -3,6 +3,7 @@ module.exports = function buildMakeUser({
   encrypter,
   requiredParam,
   emailValidator,
+  upperFirstLetter,
 }) {
   return function makeUser({
     id = Id.makeId(),
@@ -29,10 +30,12 @@ module.exports = function buildMakeUser({
     }
 
     const encryptedPassword = encrypter(password);
+    const normalizedFirstName = upperFirstLetter(firstName);
+    const normalizedLastName = upperFirstLetter(lastName);
     return Object.freeze({
       getId: () => id,
-      getFirstName: () => firstName,
-      getLastName: () => lastName,
+      getFirstName: () => normalizedFirstName,
+      getLastName: () => normalizedLastName,
       getEmail: () => email,
       getPassword: () => encryptedPassword,
       getCitizenshipNo: () => citizenshipNo,
