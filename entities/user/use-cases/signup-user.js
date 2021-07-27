@@ -1,4 +1,4 @@
-const makeUser = require("../index");
+const {makeUser} = require("../index");
 module.exports = function makeSignupUser({userDb}) {
   return async function signupUser(userInfo) {
     const user = makeUser(userInfo);

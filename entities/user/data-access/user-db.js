@@ -4,6 +4,7 @@ module.exports = function makeUserDb({makeDb}) {
   return Object.freeze({
     insert,
     findById,
+    findByEmail,
   });
 
   function insert({
@@ -68,14 +69,33 @@ module.exports = function makeUserDb({makeDb}) {
       );
     });
   }
+  function findByEmail({email}) {
+    return new Promise(async function (resolve, reject) {
+      const db = await makeDb();
+
+      db.query(
+        "SELECT * from users WHERE email= ? ",
+        email,
+        function (error, result, metaData) {
+          db.end();
+          if (error) {
+            return reject({error});
+          }
+
+          return resolve(filterUser(result)[0]);
+        }
+      );
+    });
+  }
 
   function filterUser(results) {
     return results.map((row) => {
       return {
+        id: row.id,
         firstName: row.first_name,
         lastName: row.last_name,
         email: row.email,
-
+        password: row.password,
         citizenshipNo: row.citizenship_no,
       };
     });

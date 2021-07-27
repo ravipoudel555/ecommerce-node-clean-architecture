@@ -1,5 +1,5 @@
 const makeFakeUser = require("../../__test__/fixtures/user");
-const makeUser = require("./");
+const {makeUser} = require("./");
 describe("user", () => {
   it("must have first name", () => {
     const user = makeFakeUser({firstName: undefined});
@@ -55,5 +55,15 @@ describe("user", () => {
   it("must have a valid email", () => {
     const user = makeFakeUser({email: "ra"});
     expect(() => makeUser(user)).toThrow("Invalid email.");
+  });
+  it("must uppercase firstName's starting letter", () => {
+    const fakeUser = makeFakeUser({firstName: "ravi"});
+    const user = makeUser(fakeUser);
+    expect(user.getFirstName()).toEqual("Ravi");
+  });
+  it("must uppercase lastName's starting letter", () => {
+    const fakeUser = makeFakeUser({lastName: "poudel"});
+    const user = makeUser(fakeUser);
+    expect(user.getLastName()).toEqual("Poudel");
   });
 });
