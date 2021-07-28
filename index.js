@@ -9,7 +9,12 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
+//routes
 app.use("/users", require("./routes/user-route"));
+app.use("/products", require("./routes/product-route"));
 app.use(makeCallback(notFound));
-app.listen(3000, () => console.log(`server started`));
+
+const port = process.env.PORT || 9000;
+//starting server
+app.listen(port, () => console.log(`server started at port ${port}`));
 module.exports = app;

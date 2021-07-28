@@ -1,15 +1,15 @@
-module.exports = function makeSignupUserController({signupUser}) {
-  return async function signupUserController(httpRequest) {
+module.exports = function makePostProduct({addProduct}) {
+  return async function postProduct(httpRequest) {
     try {
-      const userInfo = httpRequest.body;
-      const registeredUser = await signupUser({...userInfo});
+      const productInfo = httpRequest.body;
+      const addedProduct = await addProduct({...productInfo});
       return {
         headers: {
           "Content-Type": "application/json",
         },
         statusCode: 201,
         body: {
-          registeredUser,
+          addedProduct,
         },
       };
     } catch (e) {
