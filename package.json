@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "test": "jest entities/user/ --watchAll",
-    "test-db": "jest entities/user/data-access --watchAll",
-    "test-use": "jest entities/user/use-cases --watchAll",
-    "test-con": "jest entities/user/controllers/ --watchAll",
+    "test": "jest entities/product --watchAll",
+    "test-db": "jest entities/product/data-access --watchAll",
+    "test-use": "jest entities/product/use-cases --watchAll",
+    "test-con": "jest entities/product/controllers/ --watchAll",
     "down-all": "knex migrate:rollback --all",
     "up": "knex migrate:up"
   },
