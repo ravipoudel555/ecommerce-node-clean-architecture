@@ -1,5 +1,5 @@
 const mysql = require("mysql");
-
+require("dotenv").config();
 module.exports = async function makeDb() {
   const connection = await mysql.createConnection({
     host: "localhost",
