@@ -12,6 +12,7 @@ app.use(express.urlencoded({extended: false}));
 //routes
 app.use("/users", require("./routes/user-route"));
 app.use("/products", require("./routes/product-route"));
+app.use("/orders", require("./routes/order-route"));
 app.use(makeCallback(notFound));
 
 const port = process.env.PORT || 9000;
